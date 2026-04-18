@@ -1,83 +1,79 @@
-# 📄 Compilação de Dados – Importação e Exportação do Estado de São Paulo
-**Data de criação:** 15/09/2025  
-**Última atualização:** 10/11/2025  
-**Autores:** Jackson Penaforte e Vitor Amaral  
+# 📄 Compilação de Dados - 
+**Data de criação:** 03/04/2026  
+**Última atualização:** 17/04/26 
+**Autores:** Jackson Penaforte e Marcelo R. Osako 
 
 ---
 
 ```python
 # Importa a biblioteca necessária
+
 import pandas as pd
 
 # Monta o Google Drive para acessar os arquivos
+
 from google.colab import drive
 drive.mount('/content/drive')
 
-# Define o caminho da pasta onde estão os arquivos de dados
-origem = '/content/drive/MyDrive/api_python/exportcao_importacao/'
+# Define o caminho da pasta e o nome do arquivo CSV, onde estão os arquivos de dados
 
-# Define os caminhos dos arquivos CSV
-arq_7 = origem + 'EXP_2023_MUN.csv'
-arq_8 = origem + 'IMP_2023_MUN.csv'
-arq_9 = origem + 'EXP_2024_MUN.csv'
-arq_10 = origem + 'IMP_2024_MUN.csv'
-arq_11 = origem + 'EXP_2025_MUN.csv'
-arq_12 = origem + 'IMP_2025_MUN.csv'
-ncm = origem + 'NCM.csv'
-país = origem + 'PAIS.csv'
-via = origem +'VIA.csv'
-urf = origem + 'URF.csv'
-uf_m = origem + 'UF_MUN.csv'
-uf = origem + 'UF.csv'
-sh = origem + 'NCM_SH.csv'
+origem = '/content/drive/MyDrive/logteam/'
+arq = origem + 'Transporte_de_Produtos_Quimicos_Perigosos_ou_Combustíveis..csv'
 
-# Lê os arquivos de exportação e importação municipais
-exp23m = pd.read_csv(arq_7, low_memory=False, sep=';', encoding='UTF-8')
-imp23m = pd.read_csv(arq_8, low_memory=False, sep=';', encoding='UTF-8')
-exp24m = pd.read_csv(arq_9, low_memory=False, sep=';', encoding='UTF-8')
-imp24m = pd.read_csv(arq_10, low_memory=False, sep=';', encoding='UTF-8')
-exp25m = pd.read_csv(arq_11, low_memory=False, sep=';', encoding='UTF-8')
-imp25m = pd.read_csv(arq_12, low_memory=False, sep=';', encoding='UTF-8')
+# Transforma todos os textos de todas as colunas em letras MAIÚSCULAS.
 
-# Lê tabelas auxiliares de referência
-NCM = pd.read_csv(ncm, low_memory=False, sep=';', encoding='latin1')
-PAÍS = pd.read_csv(país, low_memory=False, sep=';', encoding='latin1')
-VIA = pd.read_csv(via, low_memory=False, sep=';', encoding='latin1')
-URF = pd.read_csv(urf, low_memory=False, sep=';', encoding='latin1')
-UF_MUN = pd.read_csv(uf_m, low_memory=False, sep=';', encoding='latin1')
-UF = pd.read_csv(uf, low_memory=False, sep=';', encoding='latin1')
-SH = pd.read_csv(sh, low_memory=False, sep=';', encoding='latin1')
+df = df.applymap(lambda s: s.upper() if type(s) == str else s)
 
-# Remove linhas duplicadas em tabelas auxiliares
-PAÍS = PAÍS[['CO_PAIS','NO_PAIS_ING']].drop_duplicates(subset='CO_PAIS')
-UF_MUN = UF_MUN[['CO_MUN_GEO','NO_MUN']].drop_duplicates(subset='CO_MUN_GEO')
-SH = SH[['CO_SH4','NO_SH4_POR']].drop_duplicates(subset='CO_SH4')
+#  Limpeza de Dados Numéricos
 
-# Une dados de exportação de 2023 a 2025
-finalexpm = pd.concat([exp23m, exp24m, exp25m], ignore_index=True)
+Aqui você resolve o problema de formatação brasileira (onde milhar é ponto e decimal é vírgula) para que o Python entenda o valor como um número real.
+Remove pontos de milhar, substitui a vírgula decimal por ponto e converte a coluna para o tipo numérico (float).
+df['Quantidade Transportada'] = (df['Quantidade Transportada'].str.replace('.', '', regex=False).str.replace(',', '.', regex=False).astype(float)
 
-# Mescla informações de país, município e classificação SH
-finalexpm = finalexpm.merge(PAÍS[['CO_PAIS','NO_PAIS_ING']], on='CO_PAIS', how='left')
-finalexpm = finalexpm.merge(UF_MUN[['CO_MUN_GEO','NO_MUN']], left_on='CO_MUN', right_on='CO_MUN_GEO', how='left')
-finalexpm = finalexpm.merge(SH[['CO_SH4','NO_SH4_POR']], left_on='SH4', right_on='CO_SH4', how='left')
+#  Exibe as 6 primeiras linhas do dataframe para conferência.
 
-# Une dados de importação de 2023 a 2025
-finalimpm = pd.concat([imp23m, imp24m, imp25m], ignore_index=True)
+df.head(6)
 
-# Mescla informações de país, município e classificação SH
-finalimpm = finalimpm.merge(PAÍS[['CO_PAIS','NO_PAIS_ING']], on='CO_PAIS', how='left')
-finalimpm = finalimpm.merge(UF_MUN[['CO_MUN_GEO','NO_MUN']], left_on='CO_MUN', right_on='CO_MUN_GEO', how='left')
-finalimpm = finalimpm.merge(SH[['CO_SH4','NO_SH4_POR']], left_on='SH4', right_on='CO_SH4', how='left')
+# Conversão de Unidades (Metros Cúbicos para Litros)
 
-# Filtra dados apenas do estado de São Paulo (SP)
-finalimpSP = finalimpm[finalimpm['SG_UF_MUN'] == 'SP']
-finalexpSP = finalexpm[finalexpm['SG_UF_MUN'] == 'SP']
+Para manter a consistência, você identifica quem está em "Metros" e converte para "Litros".
+Cria um filtro (máscara) para encontrar linhas onde a unidade de medida contém a palavra "METRO".
+mask_metros = df['Unidade de Medida'].str.contains('METRO', na=False)
 
-# Visualiza as últimas linhas dos dados tratados
-finalexpSP.tail(5)
-finalimpSP.tail(5)
+Multiplica por 1000 a quantidade das linhas filtradas (1 m³ = 1000L).
+df.loc[mask_metros, 'Quantidade Transportada'] *= 1000
 
-# Exporta os arquivos finais limpos e filtrados por SP
-finalimpSP.to_csv(origem + 'finalimpSP.csv', index=False)
-finalexpSP.to_csv(origem + 'finalexpSP.csv', index=False)
+Altera o nome da unidade para "LITROS" nessas mesmas linhas.
+df.loc[mask_metros, 'Unidade de Medida'] = 'LITROS'
+
+# Filtragem por Produto e Tempo
+
+Nesta etapa, você reduz o volume de dados apenas para o que te interessa (combustíveis específicos e anos recentes).
+Filtra o dataframe para manter apenas os produtos que contenham as palavras-chave de combustíveis.
+df_filtrado = df[df['Produto'].str.contains('GASOLINA|ETANOL|DIESEL|GLP|COMBUSTIVEIS', na=False)]
+
+Converte a coluna 'Ano' para números, transformando erros em valores nulos (NaN).
+df_filtrado['Ano'] = pd.to_numeric(df_filtrado['Ano'], errors='coerce')
+
+Mantém no dataframe apenas os registros do ano de 2013 em diante.
+df_filtrado = df_filtrado[df_filtrado['Ano'] >= 2013]
+
+# Organização Final e Exportação
+
+Você organiza os dados cronologicamente e salva o resultado final.
+Ordena a tabela pelo ano, do mais antigo para o mais recente.
+df_filtrado = df_filtrado.sort_values(by='Ano', ascending=True)
+
+Redefine os números das linhas (índice) para que comecem do zero em sequência.
+df_filtrado = df_filtrado.reset_index(drop=True)
+
+Exibe as últimas 5 linhas do resultado final.
+df_filtrado.tail(5)
+
+Exibe informações técnicas da tabela (tipos de dados, memória usada, valores nulos).
+df_filtrado.info()
+
+Salva o dataframe limpo e filtrado em um novo arquivo CSV no seu Drive.
+df_filtrado.to_csv(origem+'Planilha_Limpa_Filtrada.csv', index=False)
+
 ```
