@@ -1,13 +1,11 @@
-# Aprendizado por Projeto Integrado (API) - Template
+#   Aprendizado por Projeto Integrado (API) 
+##  Grupo G2 Logística - 2 Semestre - LogTeam
 
-Template para os projetos de API, ensinando na utilização do repositório digital "GitHub". 
-
-Projeto baseado na metodologia ágil SCRUM, procurando desenvolver a Proatividade, Autonomia, Colaboração e Entrega de Resultados dos estudantes envolvidos
 
 # Índice
 * [Objetivo do Projeto](#objetivo-do-projeto)
 * [Equipe](#equipe)
-* [Backlog do produto](#product-backlog)
+* [Backlog do produto](#Backlog-Logteam)
 * [Competências desenvolvidas](#competências-desenvolvidas)
 * [Registro das Sprints](#registro-das-sprints)
 
@@ -55,7 +53,6 @@ Para alcançar esses objetivos, o projeto utiliza um pipeline de dados que envol
 * Python (Colab)
 
 
-# Product Backlog
 
 # Backlog - LogTeam
 
