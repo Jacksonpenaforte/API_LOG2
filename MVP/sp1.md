@@ -70,4 +70,7 @@ Todas as User stories abaixo possuem **Prioridade Alta** e foram **Concluídas**
 * Análise por Modal: Iniciar o cruzamento de dados para identificar qual modal (Rodoviário, Ferroviário etc.) é predominante para cada categoria de carga perigosa.
 * Testes de Usabilidade: Realizar uma demonstração para os "Gestores de Logística" para validar se os filtros de região e estado atendem às necessidades de fiscalização.
 * Documentação de ETL: Começar a redigir o manual técnico explicando como o script Python limpa os dados, facilitando a manutenção futura no GitHub.
+
+## 📌 Anexos/Evidencias
+
 ---
