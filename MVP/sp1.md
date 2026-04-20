@@ -72,9 +72,8 @@ Todas as User stories abaixo possuem **Prioridade Alta** e foram **Concluídas**
 * Documentação de ETL: Começar a redigir o manual técnico explicando como o script Python limpa os dados, facilitando a manutenção futura no GitHub.
 
 ## 📎 Anexos/Evidencias
-- Link google Colabe (https://colab.research.google.com/drive/1LAeYP5MkqIlomHgFZOUsjb7Vgtn842dm?usp=sharing)
-- Video Dashboard:
-https://github.com/user-attachments/assets/a343540b-de81-4606-b2d5-89f771af1be2
+- Link google Colabe: (https://colab.research.google.com/drive/1LAeYP5MkqIlomHgFZOUsjb7Vgtn842dm?usp=sharing)
+- Video: https://github.com/user-attachments/assets/a343540b-de81-4606-b2d5-89f771af1be2
 
 
 
