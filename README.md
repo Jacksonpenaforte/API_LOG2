@@ -42,12 +42,12 @@ A plataforma visa transformar dados brutos em indicadores estratégicos, permiti
 
 * Mapeamento de Atores: Identificar as principais empresas movimentadoras de cargas perigosas com declarações ativas no sistema.
 
-Suporte à Decisão: Fornecer uma interface visual limpa e intuitiva que auxilie na formulação de políticas públicas e no desenvolvimento de estudos acadêmicos sobre a segurança e logística de produtos perigosos no Brasil.
+* Suporte à Decisão: Fornecer uma interface visual limpa e intuitiva que auxilie na formulação de políticas públicas e no desenvolvimento de estudos acadêmicos sobre a segurança e logística de produtos perigosos no Brasil.
 
 Para alcançar esses objetivos, o projeto utiliza um pipeline de dados que envolve a extração e limpeza via Python (Pandas) no ambiente Google Colab, com a visualização final e painéis de indicadores construídos em Power BI.
 
 
-## Tecnologias Utilizadas
+## Ferramentas Utilizadas
 
 * Jira Software
 * Power BI
