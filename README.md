@@ -5,6 +5,7 @@
 # Índice
 * [Objetivo do Projeto](#objetivo-do-projeto)
 * [Equipe](#equipe)
+* [Backlog do produto](#product-backlog)
 * [Registro das Sprints](#registro-das-sprints)
 
 
