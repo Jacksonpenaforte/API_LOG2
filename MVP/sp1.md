@@ -73,7 +73,12 @@ Todas as User stories abaixo possuem **Prioridade Alta** e foram **Concluídas**
 
 ## 📎 Anexos/Evidencias
 - Link google Colabe (https://colab.research.google.com/drive/1LAeYP5MkqIlomHgFZOUsjb7Vgtn842dm?usp=sharing)
-- Video utilização do Dashboard: 
+- Video Dashboard:
+https://github.com/user-attachments/assets/a343540b-de81-4606-b2d5-89f771af1be2
+
+
+
+
 ---
 
 
