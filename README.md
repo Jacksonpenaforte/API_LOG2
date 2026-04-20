@@ -76,7 +76,7 @@ Para alcançar esses objetivos, o projeto utiliza um pipeline de dados que envol
 
 | Sprint            | Previsão   | Status   | Histórico |
 |-------------------|------------|----------|-----------|
-| 01                | 23/04/2026 | Andamento |   |
+| 01                | 23/04/2026 | Andamento | [MVP](MVP/sp1.md) |
 | 02                | 30/10/2025 | A fazer |  |
 | 03                | 13/11/2025 | A fazer |   |
 | Feira de Soluções | 04/12/2025 | A fazer|  |
