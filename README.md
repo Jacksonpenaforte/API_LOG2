@@ -36,11 +36,11 @@ O objetivo principal deste projeto é o desenvolvimento de uma solução de Busi
 A plataforma visa transformar dados brutos em indicadores estratégicos, permitindo:
 
 
-*Monitoramento de Movimentação: Analisar métricas nacionais e estaduais sobre os tipos de cargas movimentadas e sua evolução temporal entre os anos de 2013 e 2025.
+* Monitoramento de Movimentação: Analisar métricas nacionais e estaduais sobre os tipos de cargas movimentadas e sua evolução temporal entre os anos de 2013 e 2025.
 
-*Análise Logística: Identificar os principais modais de transporte utilizados e a matriz de Origem e Destino (OD) das cargas.
+* Análise Logística: Identificar os principais modais de transporte utilizados e a matriz de Origem e Destino (OD) das cargas.
 
-*Mapeamento de Atores: Identificar as principais empresas movimentadoras de cargas perigosas com declarações ativas no sistema.
+* Mapeamento de Atores: Identificar as principais empresas movimentadoras de cargas perigosas com declarações ativas no sistema.
 
 Suporte à Decisão: Fornecer uma interface visual limpa e intuitiva que auxilie na formulação de políticas públicas e no desenvolvimento de estudos acadêmicos sobre a segurança e logística de produtos perigosos no Brasil.
 
